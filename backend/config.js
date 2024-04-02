@@ -1,11 +1,6 @@
-import secureRandomString from 'secure-random-string';
 
-// Generate a secure random JWT secret
-const generateJWTSecret = () => {
-    return secureRandomString({ length: 32, symbols: true });
-};
+import crypto from 'crypto'
 
-// Usage example
-const JWT_SECRET = generateJWTSecret();
+const JWT_SECRET = crypto.randomBytes(32).toString('hex');
 
 export default JWT_SECRET;

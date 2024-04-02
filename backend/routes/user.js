@@ -1,7 +1,7 @@
 import express from "express";
 import { userSignupSchema, userSigninSchema, userUpdateSchema } from "./types.js";
 import {User, Account} from "../db.js"
-import { JWT } from 'jose';
+import jwt from "jsonwebtoken"
 import {authMiddleware} from "../middleware.js"
 import JWT_SECRET from "../config.js";
 
@@ -34,12 +34,11 @@ userRouter.post('/signup', async (req, res)=>{
         balance: 1+ Math.random()*10000
     })
 
-    //The created user is auto assigned an id by the database, saving it to use for authentication
+    //The created user is auto assigned an id bythe database, saving it to use for authentication
     //Creating a token using the id and a secret key called JWT_SECRET
-  // Sign the JWT
-    const token = JWT.sign( {userId : user._id}, JWT_SECRET, {
-        algorithm: 'HS256'
-    });
+    const token = jwt.sign({
+        userId: user._id,
+    }, JWT_SECRET)
 
     //Sending this token to the user's browser in order to save it
     res.status(200).json({
@@ -67,9 +66,9 @@ userRouter.post('/signin', async (req,res)=>{
     })
 
     if(existingUser){
-        const token = JWT.sign( {userId : user._id}, JWT_SECRET, {
-            algorithm: 'HS256'
-        });
+        const token = jwt.sign({
+            userId: existingUser._id
+        }, JWT_SECRET)
 
         res.json({
             signedInUserId : existingUser._id,
