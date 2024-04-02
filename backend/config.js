@@ -1,6 +1,3 @@
-
-import crypto from 'crypto'
-
-const JWT_SECRET = crypto.randomBytes(32).toString('hex');
+const JWT_SECRET = "eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTcxMjA2NjQ4MCwiaWF0IjoxNzEyMDY2NDgwfQ.ToaMrEQPYacZZbNv5VhfN8wU41qSnoBXzFgV5dTppag"
 
 export default JWT_SECRET;

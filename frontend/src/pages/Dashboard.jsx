@@ -4,7 +4,7 @@ import { BalanceComponent } from "../components/BalanceComponent"
 import { Users } from "../components/Users"
 import axios from "axios"
 import { BottomButton } from "../components/BottomButton"
-import { Navigate, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 export const Dashboard=()=>{
     const [balance, setBalance] = useState(0)
