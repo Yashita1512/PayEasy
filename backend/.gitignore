@@ -1,0 +1,35 @@
+# Dependency directories
+node_modules/
+
+# Environment variables file
+.env
+
+# Logs
+logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Dependency directory lock file
+package-lock.json
+yarn.lock
+
+# Debugging files
+.vscode/
+.nyc_output/
+coverage/
+
+# Production build
+/build
+
+# IDE files
+.idea/
+*.iml
+
+# OS and IDE generated files
+.DS_Store
+Thumbs.db
