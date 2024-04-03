@@ -5,7 +5,13 @@ import {accountsRouter} from "./routes/account.js";
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: "*", // Allow requests from any origin
+  methods: ["GET", "POST", "PUT", "DELETE"], // Allow these HTTP methods
+  allowedHeaders: ["Content-Type", "Authorization"], // Allow these headers
+  credentials: true, // Allow cookies and other credentials to be sent
+  preflightContinue: false, // Disable preflight requests handling by this middleware
+}));
 
 app.use("/user",userRouter);
 app.use("/account", accountsRouter)
