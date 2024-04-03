@@ -6,7 +6,7 @@
   "scripts": {
     "deploy": "vite build && vite build --base ./ && gh-pages -d dist",
     "dev": "vite",
-    "build": "vite build",
+    "build": "npm run build",
     "start": "npm run dev",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
