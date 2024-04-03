@@ -5,13 +5,14 @@ import { OneUserBar } from "./OneUserBar";
 import axios from "axios"
 
 export const Users = ()=>{
+    const BACKEND_URL = "https://pay-easy.vercel.app";
     const [users, setUsers] = useState([]);
     const [filter, setFilter] = useState([]);
 
     const signedInUserId = localStorage.getItem("userId")
 
     useEffect(()=>{
-        axios.get("http://localhost:3000/user/bulk?filter=" + filter)
+        axios.get(BACKEND_URL + "/user/bulk?filter=" + filter)
         .then(response=>{
             setUsers(response.data.user)
         })

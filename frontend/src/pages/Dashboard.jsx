@@ -7,10 +7,11 @@ import { BottomButton } from "../components/BottomButton"
 import { useNavigate } from "react-router-dom"
 
 export const Dashboard=()=>{
+    const BACKEND_URL = "https://pay-easy.vercel.app"
     const [balance, setBalance] = useState(0)
     const navigate = useNavigate();
     useEffect(()=>{
-        axios.get("http://localhost:3000/account/balance", {
+        axios.get(BACKEND_URL + "/account/balance", {
             headers:{
                 Authorization: "Bearer " + localStorage.getItem("token")
             }

@@ -13,6 +13,7 @@ export const Signup = ()=>{
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
+    const BACKEND_URL = "https://pay-easy.vercel.app";
 
     return <div className="bg-slate-300 h-screen flex justify-center">
         <div className="flex flex-col justify-center">
@@ -24,7 +25,7 @@ export const Signup = ()=>{
                 <InputBox onChange={e=>setUsername(e.target.value)} inputlabel={"Email"} placeholder={"John@gmail.com"}/>
                 <InputBox onChange={e=>setPassword(e.target.value)} inputlabel={"Password"}/>
                 <BottomButton label={"Sign Up"} onClick={async ()=>{
-                    const response = await axios.post("http://localhost:3000/user/signup",
+                    const response = await axios.post(BACKEND_URL+"/user/signup",
                     {
                         firstName,
                         lastName,
