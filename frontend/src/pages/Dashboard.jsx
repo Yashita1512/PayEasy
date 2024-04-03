@@ -10,7 +10,7 @@ export const Dashboard=()=>{
     const [balance, setBalance] = useState(0)
     const navigate = useNavigate();
     useEffect(()=>{
-        axios.get("http://localhost:3000/api/v1/account/balance", {
+        axios.get("http://localhost:3000/account/balance", {
             headers:{
                 Authorization: "Bearer " + localStorage.getItem("token")
             }

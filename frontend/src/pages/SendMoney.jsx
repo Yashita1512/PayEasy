@@ -27,7 +27,7 @@ export const SendMoney=()=>{
                 <input onChange={(e)=>setAmount(e.target.value)} placeholder="Enter amount" className="border border-slate-200 rounded w-80 pl-2 mt-2"/>
             </div>
             <button onClick={async()=>{
-                const response = await axios.post("http://localhost:3000/api/v1/account/transfer",{
+                const response = await axios.post("http://localhost:3000/account/transfer",{
                     to: id,
                     amount
                 }, {

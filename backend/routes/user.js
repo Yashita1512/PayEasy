@@ -4,7 +4,7 @@ import {User, Account} from "../db.js"
 import {authMiddleware} from "../middleware.js"
 import JWT_SECRET from "../config.js";
 
-const userRouter = express.Router();
+export const userRouter = express.Router();
 
 function base64urlEncode(str) {
     return Buffer.from(str)
@@ -151,6 +151,3 @@ userRouter.get("/bulk", async (req, res)=>{
         }))
     })
 })
-
-export default userRouter;
-

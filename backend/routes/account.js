@@ -3,7 +3,7 @@ import { authMiddleware } from "../middleware.js"
 import { Account } from "../db.js"
 import mongoose from "mongoose"
 
-const accountsRouter = express()
+export const accountsRouter = express.Router();
 
 accountsRouter.get("/balance", authMiddleware, async (req,res)=>{
     const account = await Account.findOne({
@@ -62,5 +62,3 @@ accountsRouter.post("/transfer", authMiddleware, async (req, res)=>{
         message: "Transfer successful"
     })
 })
-
-export default accountsRouter

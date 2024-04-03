@@ -11,7 +11,7 @@ export const Users = ()=>{
     const signedInUserId = localStorage.getItem("userId")
 
     useEffect(()=>{
-        axios.get("http://localhost:3000/api/v1/user/bulk?filter=" + filter)
+        axios.get("http://localhost:3000/user/bulk?filter=" + filter)
         .then(response=>{
             setUsers(response.data.user)
         })
