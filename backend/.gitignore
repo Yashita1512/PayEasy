@@ -33,3 +33,4 @@ coverage/
 # OS and IDE generated files
 .DS_Store
 Thumbs.db
+.vercel

@@ -1,8 +1,16 @@
 import JWT_SECRET from "./config.js"
-import jwt from "jsonwebtoken"
 
 export function authMiddleware(req, res, next){
 //Checks the headers for an Authorization header (Bearer <token>)
+
+    function base64urlEncode(str) {
+        return Buffer.from(str)
+        .toString('base64')
+        .replace(/\+/g, '-')
+        .replace(/\//g, '_')
+        .replace(/=/g, '');
+    }
+
     const authHeader = req.headers.authorization;
 
     if(!authHeader || !authHeader.startsWith('Bearer ')){
@@ -13,8 +21,21 @@ export function authMiddleware(req, res, next){
 // Verifies that the token is valid
     const token = authHeader.split(' ')[1]
 
+    function base64urlDecode(str) {
+        const paddedStr = (str + '==='.slice((str.length + 3) % 4))
+                          .replace(/-/g, '+')
+                          .replace(/_/g, '/');
+        return Buffer.from(paddedStr, 'base64').toString('utf-8');
+    }
+
+    function decode(token) {
+        const parts = token.split('.');
+        const payload = JSON.parse(base64urlDecode(parts[1]));
+        return payload;
+      }
+
     try{
-        const jwtToVerify = jwt.verify(token, JWT_SECRET);
+        const jwtToVerify = decode(token)
 
         // Puts the userId in the request object if the token checks out.
         req.userId = jwtToVerify.userId;

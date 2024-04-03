@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { string } from "zod";
 
 mongoose.connect("mongodb+srv://yashita1512:jKKSIJs6ZqS8gk3Y@cluster0.zz3czff.mongodb.net/")
 

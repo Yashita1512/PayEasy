@@ -1,6 +1,6 @@
 import express from "express"
 import { authMiddleware } from "../middleware.js"
-import { Account, User } from "../db.js"
+import { Account } from "../db.js"
 import mongoose from "mongoose"
 
 const accountsRouter = express()
@@ -16,7 +16,7 @@ accountsRouter.get("/balance", authMiddleware, async (req,res)=>{
 
 accountsRouter.post("/transfer", authMiddleware, async (req, res)=>{
     const session = await mongoose.startSession();
-    await session.startTransaction()
+        session.startTransaction()
     const {amount, to} = req.body
 
     //fetch the accounts involved in the transactions

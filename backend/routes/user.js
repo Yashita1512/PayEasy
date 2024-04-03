@@ -1,11 +1,30 @@
 import express from "express";
 import { userSignupSchema, userSigninSchema, userUpdateSchema } from "./types.js";
 import {User, Account} from "../db.js"
-import jwt from "jsonwebtoken"
 import {authMiddleware} from "../middleware.js"
 import JWT_SECRET from "../config.js";
 
 const userRouter = express.Router();
+
+function base64urlEncode(str) {
+    return Buffer.from(str)
+        .toString('base64')
+        .replace(/\+/g, '-')
+        .replace(/\//g, '_')
+        .replace(/=/g, '');
+    }
+    
+function sign(payload, secretKey) {
+    const header = {
+    "alg": "none",
+    "typ": "JWT"
+    };
+
+    const encodedHeader = base64urlEncode(JSON.stringify(header));
+    const encodedPayload = base64urlEncode(JSON.stringify(payload));
+
+    return encodedHeader + '.' + encodedPayload + '.';
+}
 
 userRouter.post('/signup', async (req, res)=>{
     //ZOD datatype validation and return early if not valid 
@@ -21,7 +40,7 @@ userRouter.post('/signup', async (req, res)=>{
     //Checking for uniqueness of username and  return early if its not
     const existingUser = await User.findOne({username: req.body.username})
     if(existingUser){
-        res.status(411).json({
+        return res.status(411).json({
             message: "Email already taken"
         })
     }
@@ -34,11 +53,13 @@ userRouter.post('/signup', async (req, res)=>{
         balance: 1+ Math.random()*10000
     })
 
-    //The created user is auto assigned an id bythe database, saving it to use for authentication
+    //The created user is auto assigned an id by the database, saving it to use for authentication
     //Creating a token using the id and a secret key called JWT_SECRET
-    const token = jwt.sign({
-        userId: user._id,
-    }, JWT_SECRET)
+    const payload = {
+        userId: user._id
+    };
+
+    const token = sign(payload, JWT_SECRET);
 
     //Sending this token to the user's browser in order to save it
     res.status(200).json({
@@ -66,9 +87,11 @@ userRouter.post('/signin', async (req,res)=>{
     })
 
     if(existingUser){
-        const token = jwt.sign({
+      const payload = {
             userId: existingUser._id
-        }, JWT_SECRET)
+        };
+      
+      const token = sign(payload, JWT_SECRET);
 
         res.json({
             signedInUserId : existingUser._id,
@@ -79,7 +102,7 @@ userRouter.post('/signin', async (req,res)=>{
     }
 
     //sending an error msg for all other errors
-    res.status(411).json({
+    return res.status(411).json({
         msg:"Error while logging in"
     })
 
