@@ -1,5 +1,3 @@
-import JWT_SECRET from "./config.js"
-
 export function authMiddleware(req, res, next){
 //Checks the headers for an Authorization header (Bearer <token>)
 
