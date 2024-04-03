@@ -6,11 +6,10 @@ import {Dashboard} from "./pages/Dashboard"
 import {SendMoney} from "./pages/SendMoney"
 
 function App() {
-  const basename = process.env.PUBLIC_URL || '/';
 
   return (
     <>
-    <BrowserRouter basename={basename}>
+    <BrowserRouter>
       <Routes>
         <Route path ="/" element={<Home/>}/>
         <Route path ="/signup" element={<Signup/>}/>
