@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import { Avatar } from "./Avatar"
-import {BottomButton} from "./BottomButton"
 import { OneUserBar } from "./OneUserBar";
 import axios from "axios"
 
