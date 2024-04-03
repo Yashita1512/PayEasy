@@ -3,7 +3,6 @@ import cors from "cors";
 import {userRouter} from "./routes/user.js";
 import {accountsRouter} from "./routes/account.js";
 
-
 const app = express();
 app.use(express.json());
 app.use(cors());
