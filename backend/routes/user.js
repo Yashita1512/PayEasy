@@ -1,5 +1,5 @@
 import express from "express";
-import { userSignupSchema, userSigninSchema, userUpdateSchema } from "./types.js";
+import { userSignupSchema, userSigninSchema, userUpdateSchema } from "../types.js";
 import {User, Account} from "../db.js"
 import {authMiddleware} from "../middleware.js"
 import JWT_SECRET from "../config.js";
@@ -27,46 +27,48 @@ function sign(payload, secretKey) {
 }
 
 userRouter.post('/signup', async (req, res)=>{
-    //ZOD datatype validation and return early if not valid 
-    //sending appropriate staus code and json msg, 
-    //the safeParse method returns an object with a boolean named success as one of the props, 
-    //destructuring it out from that object
-    const {success} =  userSignupSchema.safeParse(req.body)
-    if(!success){
-        return res.status(411).json({
-            message: "Incorrect inputs"
+    //ZOD datatype validation and return early if not valid sending appropriate status code and json msg, 
+    //the safeParse method returns an object with a boolean named success as one of the props, destructuring it out from that object
+    try{
+        const {success} =  userSignupSchema.safeParse(req.body)
+        if(!success){
+            return res.status(411).json({
+                message: "Incorrect inputs"
+            })
+        }
+        //Checking for uniqueness of username and  return early if its not
+        const existingUser = await User.findOne({username: req.body.username})
+        if(existingUser){
+            return res.status(411).json({
+                message: "Email already taken"
+            })
+        }
+        //After both checks are passed by the request body, 
+        //a new 'user' object is created on the database under 'User' collection
+        const user = await User.create(req.body)
+
+        await Account.create({
+            userId : user._id,
+            balance: 1+ Math.random()*10000
         })
-    }
-    //Checking for uniqueness of username and  return early if its not
-    const existingUser = await User.findOne({username: req.body.username})
-    if(existingUser){
-        return res.status(411).json({
-            message: "Email already taken"
+
+        //The created user is auto assigned an id by the database, saving it to use for authentication
+        //Creating a token using the id and a secret key called JWT_SECRET
+        const payload = {
+            userId: user._id
+        };
+
+        const token = sign(payload, JWT_SECRET);
+
+        //Sending this token to the user's browser in order to save it
+        res.status(200).json({
+            msg:"User created successfully",
+            signedInUserId : user._id,
+            token: token
         })
+    }catch(e){
+        alert('Signup failed. Please try again later.')
     }
-    //After both checks are passed by the request body, 
-    //a new 'user' object is created on the database under 'User' collection
-    const user = await User.create(req.body)
-
-    await Account.create({
-        userId : user._id,
-        balance: 1+ Math.random()*10000
-    })
-
-    //The created user is auto assigned an id by the database, saving it to use for authentication
-    //Creating a token using the id and a secret key called JWT_SECRET
-    const payload = {
-        userId: user._id
-    };
-
-    const token = sign(payload, JWT_SECRET);
-
-    //Sending this token to the user's browser in order to save it
-    res.status(200).json({
-        msg:"User created successfully",
-        signedInUserId : user._id,
-        token: token
-    })
 })
 
 //Let’s an existing user sign in to get back a token.

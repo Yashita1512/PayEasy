@@ -1,14 +1,5 @@
 export function authMiddleware(req, res, next){
 //Checks the headers for an Authorization header (Bearer <token>)
-
-    function base64urlEncode(str) {
-        return Buffer.from(str)
-        .toString('base64')
-        .replace(/\+/g, '-')
-        .replace(/\//g, '_')
-        .replace(/=/g, '');
-    }
-
     const authHeader = req.headers.authorization;
 
     if(!authHeader || !authHeader.startsWith('Bearer ')){
