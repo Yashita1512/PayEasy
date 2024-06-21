@@ -29,7 +29,6 @@ function sign(payload, secretKey) {
 userRouter.post('/signup', async (req, res)=>{
     //ZOD datatype validation and return early if not valid sending appropriate status code and json msg, 
     //the safeParse method returns an object with a boolean named success as one of the props, destructuring it out from that object
-    try{
         const {success} =  userSignupSchema.safeParse(req.body)
         if(!success){
             return res.status(411).json({
@@ -66,10 +65,7 @@ userRouter.post('/signup', async (req, res)=>{
             signedInUserId : user._id,
             token: token
         })
-    }catch(e){
-        alert('Signup failed. Please try again later.')
-    }
-})
+    })
 
 //Let’s an existing user sign in to get back a token.
 userRouter.post('/signin', async (req,res)=>{

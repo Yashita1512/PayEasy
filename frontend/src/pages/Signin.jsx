@@ -11,7 +11,7 @@ export const Signin = ()=>{
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
-    const BACKEND_URL =  "https://pay-easy-frontend.vercel.app/";
+    const BACKEND_URL =  "https://pay-easy.vercel.app/";
 
     return <div className="bg-slate-300 h-screen flex justify-center">
     
@@ -22,7 +22,8 @@ export const Signin = ()=>{
                 <InputBox onChange= {e=>{setUsername(e.target.value)}} inputlabel={"Email"} placeholder={"John@gmail.com"}/>
                 <InputBox onChange= {e=>{setPassword(e.target.value)}} inputlabel={"Password"}/>
                 <BottomButton label={"Sign in"} onClick={async()=>{
-                    const response = await axios.post(BACKEND_URL + "/user/signin",
+                    try{
+                        const response = await axios.post(BACKEND_URL + "/user/signin",
                     {
                         username,
                         password
@@ -32,8 +33,10 @@ export const Signin = ()=>{
                         setTimeout(() => {
                             navigate("/dashboard");
                         }, 1000);
+                    }catch{
+                        alert('Signin failed. Please try again later')
                     }
-                }/>
+                }}/>
                 <BottomWarning warning ={"Don't have an account?"} buttonText={"Sign Up"} link={"/signup"}/>
             </div>
         </div>

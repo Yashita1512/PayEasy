@@ -8,7 +8,7 @@ export const SendMoney=()=>{
     const [amount, setAmount]=useState(0);
     const [transferSuccess, setTransferSuccess] = useState(false)
     const navigate = useNavigate();
-    const BACKEND_URL = "https://pay-easy-frontend.vercel.app/";
+    const BACKEND_URL = "https://pay-easy.vercel.app/";
 
     return <div className="flex justify-center items-center bg-slate-100 h-screen">
         <div className="bg-white p-6">
@@ -28,7 +28,7 @@ export const SendMoney=()=>{
                 <input onChange={(e)=>setAmount(e.target.value)} placeholder="Enter amount" className="border border-slate-200 rounded w-80 pl-2 mt-2"/>
             </div>
             <button onClick={async()=>{
-                const response = await axios.post(BACKEND_URL + "/account/transfer",{
+                await axios.post(BACKEND_URL + "/account/transfer",{
                     to: id,
                     amount
                 }, {

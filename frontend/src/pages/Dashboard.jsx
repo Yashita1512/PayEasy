@@ -7,7 +7,7 @@ import { BottomButton } from "../components/BottomButton"
 import { useNavigate } from "react-router-dom"
 
 export const Dashboard=()=>{
-    const BACKEND_URL = "https://pay-easy-frontend.vercel.app/"
+    const BACKEND_URL = "https://pay-easy.vercel.app/"
     const [balance, setBalance] = useState(0)
     const navigate = useNavigate();
     useEffect(()=>{
