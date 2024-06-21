@@ -5,7 +5,17 @@ import {accountsRouter} from "./routes/account.js";
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+const corsOptions = {
+  origin: 'https://pay-easy-frontend.vercel.app',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+  allowedHeaders: 'Content-Type, Authorization',
+  credentials: true,
+  optionsSuccessStatus: 204
+};
+
+app.use(cors(corsOptions));
+
+app.options('/user/signup', cors(corsOptions)); 
 
 app.use("/user",userRouter);
 app.use("/account", accountsRouter)
