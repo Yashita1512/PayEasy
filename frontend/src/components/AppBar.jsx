@@ -12,7 +12,7 @@ export const AppBar = ({
     const navigate = useNavigate();
 
     return (
-    <div className="flex justify-between shadow-md h-14 p-3">
+    <div className="relative flex justify-between shadow-md h-14 p-3">
         <div className="text-lg">
             {label}
         </div>
@@ -26,7 +26,7 @@ export const AppBar = ({
             {clicked && <button onClick={()=>{
                     navigate('/signin');
                     localStorage.clear();
-                }} className="absolute top-0 p-2 text-lg font-semibold bg-slate-300 w-24 text-center mt-4">
+                }} className="absolute top-0 p-2 text-lg font-semibold bg-slate-300 w-24 text-center mt-4 left-1/2 transform -translate-x-1/2">
                             Log out
                         </button>}
         </div>
