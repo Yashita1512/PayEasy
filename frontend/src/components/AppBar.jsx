@@ -1,5 +1,5 @@
 import { Avatar } from "./Avatar"
-import { useState } from "react";
+// import { useState } from "react";
 
 export const AppBar = ({
     label,
@@ -17,14 +17,17 @@ export const AppBar = ({
                 <div className="px-4">
                     {greetMessage}
                 </div> 
-                <button onClick={setClicked((prevClicked)=>!prevClicked)}><Avatar nameInitials={nameInitials}/>
-                {clicked? <button onClick={()=>{
-            navigate('/signin');
-            localStorage.clear();
-          }} className="absolute top-0 p-2 text-lg font-semibold bg-slate-300 w-24 text-center mt-4">
-                    Log out
-                  </button>: null}
-                  </button>
+                <Avatar nameInitials={nameInitials}/>
+             
+                  
             </div>
     </div>
 }
+
+//<button onClick={setClicked((prevClicked)=>!prevClicked)}></button>
+//   {clicked? <button onClick={()=>{
+//     navigate('/signin');
+//     localStorage.clear();
+//   }} className="absolute top-0 p-2 text-lg font-semibold bg-slate-300 w-24 text-center mt-4">
+//             Log out
+//           </button>: null}
