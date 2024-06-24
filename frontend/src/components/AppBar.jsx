@@ -3,7 +3,7 @@ import { Avatar } from "./Avatar"
 export const AppBar = ({
     label,
     greetMessage,
-    firstNameInitial
+    nameInitials
 }) =>{
     return <div className="flex justify-between shadow-md h-14 p-3">
             <div className="text-lg">
@@ -13,7 +13,7 @@ export const AppBar = ({
                 <div className="px-4">
                     {greetMessage}
                 </div> 
-                <Avatar firstNameInitial={"Y"}/>
+                <Avatar nameInitials={nameInitials}/>
             </div>
     </div>
 }
