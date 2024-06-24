@@ -25,17 +25,15 @@ export const Dashboard=()=>{
 
     
     return <div>
-        <AppBar label={"PayEasy App"} greetMessage={"Hello"} nameInitials={nameInitials}/>
+        <AppBar label={"PayEasy App"} greetMessage={"Hello"} nameInitials={nameInitials} logOut={async()=>{
+            localStorage.removeItem("token");
+            localStorage.removeItem("userId");
+            localStorage.removeItem("userName")
+            navigate("/")}}/>
         <div className="m-8">
             <BalanceComponent balance={balance}/>
             <Users userName={"Harkirat Singh"}/>
             <div className="flex justify-end pt-10">
-        <BottomButton label={"Logout"} onClick={async()=>{
-            localStorage.removeItem("token");
-            localStorage.removeItem("userId");
-            localStorage.removeItem("userName")
-            navigate("/")
-        }}/>
         </div>
         </div> 
     </div>
