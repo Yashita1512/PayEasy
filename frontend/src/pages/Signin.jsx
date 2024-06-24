@@ -11,7 +11,7 @@ export const Signin = ()=>{
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
-    const BACKEND_URL =  "https://pay-easy.vercel.app/";
+    const BACKEND_URL =  "https://pay-easy.vercel.app";
 
     return <div className="bg-slate-300 h-screen flex justify-center">
     

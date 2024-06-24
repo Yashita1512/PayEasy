@@ -15,7 +15,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-app.options('/user/signup', cors(corsOptions)); 
+app.options('/signup', cors(corsOptions)); 
 
 app.use("/user",userRouter);
 app.use("/account", accountsRouter)
