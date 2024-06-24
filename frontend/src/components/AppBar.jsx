@@ -5,6 +5,9 @@ export const AppBar = ({
     greetMessage,
     nameInitials,
 }) =>{
+
+    const [clicked, setClicked] = useState(false);
+
     return <div className="flex justify-between shadow-md h-14 p-3">
             <div className="text-lg">
                 {label}
@@ -13,7 +16,7 @@ export const AppBar = ({
                 <div className="px-4">
                     {greetMessage}
                 </div> 
-                <Avatar nameInitials={nameInitials}/>
+                <button onClick={setClicked((prevClicked)=>!prevClicked)}><Avatar nameInitials={nameInitials}/></button>
                 {clicked? <button onClick={()=>{
             navigate('/signin');
             localStorage.clear();
