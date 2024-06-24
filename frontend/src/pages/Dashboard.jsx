@@ -19,7 +19,7 @@ export const Dashboard=()=>{
             }
         })
         .then(response=>setBalance(response.data.balance))
-        setNameInitials(localStorage.getItem("userName"))
+        setNameInitials(localStorage.getItem("userName").toUpperCase())
     },[])
 
     
