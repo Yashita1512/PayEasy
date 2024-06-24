@@ -30,6 +30,7 @@ export const Signin = ()=>{
                     })
                         localStorage.setItem("token", response.data.token)
                         localStorage.setItem("userId", response.data.signedInUserId);
+                        localStorage.setItem("userName", response.data.name)
                         setTimeout(() => {
                             navigate("/dashboard");
                         }, 1000);

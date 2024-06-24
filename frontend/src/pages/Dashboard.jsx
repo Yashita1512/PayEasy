@@ -9,7 +9,10 @@ import { useNavigate } from "react-router-dom"
 export const Dashboard=()=>{
     const BACKEND_URL = "https://pay-easy.vercel.app"
     const [balance, setBalance] = useState(0)
+    const [nameInitials, setNameInitials] = useState("");
+    
     const navigate = useNavigate();
+
     useEffect(()=>{
         axios.get(BACKEND_URL + "/account/balance", {
             headers:{
@@ -17,9 +20,12 @@ export const Dashboard=()=>{
             }
         })
         .then(response=>setBalance(response.data.balance))
+        setNameInitials(localStorage.getItem("userName"))
     },[])
+
+    
     return <div>
-        <AppBar label={"PayEasy App"} greetMessage={"Hello"} firstNameInitial={"Y"}/>
+        <AppBar label={"PayEasy App"} greetMessage={"Hello"} firstNameInitial={nameInitials}/>
         <div className="m-8">
             <BalanceComponent balance={balance}/>
             <Users userName={"Harkirat Singh"}/>

@@ -61,6 +61,7 @@ userRouter.post('/signup', async (req, res)=>{
 
         //Sending this token to the user's browser in order to save it
         res.status(200).json({
+            name: user.firstName[0] + user.lastName[0],
             msg:"User created successfully",
             signedInUserId : user._id,
             token: token
@@ -92,6 +93,7 @@ userRouter.post('/signin', async (req,res)=>{
       const token = sign(payload, JWT_SECRET);
 
         res.json({
+            name: existingUser.firstName[0] + existingUser.lastName[0],
             signedInUserId : existingUser._id,
             token: token
         })
@@ -105,25 +107,6 @@ userRouter.post('/signin', async (req,res)=>{
     })
 
 })
-
-userRouter.put("/", authMiddleware, async(req, res)=>{
-
-    const {success} = userUpdateSchema.safeParse(req.body)
-    if(!success){
-        return res.status(411).json({
-            message: "Error while updating information"
-        })
-    }
-
-    await User.updateOne({_id: req.userId},
-        req.body
-    )
-
-    res.json({
-        message: "Updated successfully"
-    })
-})
-
 
 userRouter.get("/bulk", async (req, res)=>{
     const users = await User.find({  
