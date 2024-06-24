@@ -1,7 +1,7 @@
 export const Avatar = ({
-    firstNameInitial
+    nameInitials
 })=>{
     return <div className=" bg-gray-400 rounded-full h-12 w-12 flex justify-center">
-    <button>{firstNameInitial}</button>
+    <button>{nameInitials.toUpperCase()}</button>
 </div>
 }
