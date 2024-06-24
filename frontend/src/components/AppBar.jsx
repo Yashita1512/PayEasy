@@ -1,5 +1,6 @@
 import { Avatar } from "./Avatar"
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const AppBar = ({
     label,
@@ -8,6 +9,7 @@ export const AppBar = ({
 }) =>{
 
     const [clicked, setClicked] = useState(false);
+    const navigate = useNavigate();
 
     return <div className="flex justify-between shadow-md h-14 p-3">
             <div className="text-lg">
@@ -17,15 +19,17 @@ export const AppBar = ({
                 <div className="px-4">
                     {greetMessage}
                 </div> 
-                <button onClick={setClicked((prevClicked)=>!prevClicked)}><Avatar nameInitials={nameInitials}/></button>
-                
-                <div>{clicked? <button onClick={()=>{
-                        navigate('/signin');
-                        localStorage.clear();
-                    }} className="absolute top-0 p-2 text-lg font-semibold bg-slate-300 w-24 text-center mt-4">
-                                Log out
-                            </button>: null}
-                </div> 
+                <div onClick={() => setClicked(prevClicked => !prevClicked)}>
+                    <Avatar nameInitials={nameInitials} logOut={handleLogOut}/>
+                </div>
+                    {clicked && <button onClick={()=>{
+                            navigate('/signin');
+                            localStorage.clear();
+                        }} className="absolute top-0 p-2 text-lg font-semibold bg-slate-300 w-24 text-center mt-4">
+                                    Log out
+                                </button>}
+                    </div> 
+                </div>
             </div>
     </div>
 }
