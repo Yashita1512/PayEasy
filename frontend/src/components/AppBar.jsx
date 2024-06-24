@@ -21,7 +21,7 @@ export const AppBar = ({
                 {greetMessage}
             </div> 
             <div onClick={() => setClicked(prevClicked => !prevClicked)}>
-                <Avatar nameInitials={nameInitials} logOut={handleLogOut}/>
+                <Avatar nameInitials={nameInitials} />
             </div>
             {clicked && <button onClick={()=>{
                     navigate('/signin');
