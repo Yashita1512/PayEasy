@@ -7,7 +7,7 @@ export const AppBar = ({
     nameInitials,
 }) =>{
 
-    const [clicked, setClicked] = useState(false);
+    // const [clicked, setClicked] = useState(false);
 
     return <div className="flex justify-between shadow-md h-14 p-3">
             <div className="text-lg">
