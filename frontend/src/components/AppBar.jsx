@@ -26,7 +26,7 @@ export const AppBar = ({
                 </div>
             </div>
             {clicked && (
-                <div className="absolute left-1/2 transform -translate-x-1/2 mt-4 p-2 text-lg font-semibold bg-slate-300 w-24 text-center">
+                <div className="absolute right-0 mt-4 p-2 text-lg font-semibold bg-slate-300 w-24 text-center">
                     <button
                         onClick={() => {
                             navigate('/signin');
