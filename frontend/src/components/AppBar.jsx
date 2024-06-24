@@ -12,24 +12,25 @@ export const AppBar = ({
     const navigate = useNavigate();
 
     return (
-    <div className="relative flex justify-between shadow-md h-14 p-3">
-        <div className="text-lg">
-            {label}
-        </div>
-        <div className="flex items-center">
-            <div className="px-4">
-                {greetMessage}
-            </div> 
-            <div onClick={() => setClicked(prevClicked => !prevClicked)}>
-                <Avatar nameInitials={nameInitials} />
+        <div className="sticky top-0 z-50 bg-white border-b-2 px-8 py-2">
+            <div className="text-lg">
+                {label}
             </div>
-            {clicked && <button onClick={()=>{
+            <div className="flex items-center">
+                <div className="px-4">
+                    {greetMessage}
+                </div> 
+                <div onClick={() => setClicked(prevClicked => !prevClicked)}>
+                    <Avatar nameInitials={nameInitials} />
+                </div>
+                <div className="flex justify-end relative">
+                {clicked? <button onClick={()=>{
                     navigate('/signin');
                     localStorage.clear();
-                }} className="absolute top-0 p-2 text-lg font-semibold bg-slate-300 w-24 text-center mt-4">
+                    }} className="absolute top-0 p-2 text-lg font-semibold bg-slate-300 w-24 text-center mt-4">
                             Log out
-                        </button>}
+                            </button>: null}
+                </div>                
+            </div>
         </div>
-    </div>
 )}
-
