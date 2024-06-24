@@ -11,7 +11,7 @@ export const OneUserBar = ({
         <div className="flex items-center">
             <Avatar firstNameInitial={user.firstName[0].toUpperCase()}/> 
             <div className="ml-4">
-                {user.firstName} {user.lastName}
+                {user.firstName.toUpperCase()} {user.lastName.toUpperCase()}
             </div>
         </div>
         {showButton && <BottomButton onClick={()=>navigate("/sendmoney/"+ user._id+ "/"+user.firstName)} label={"Send Money"}/> }
