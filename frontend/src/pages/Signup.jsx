@@ -13,7 +13,7 @@ export const Signup = ()=>{
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
-    const BACKEND_URL = "https://pay-easy.vercel.app";
+    const BACKEND_URL = "http://localhost:3000";
 
     return <div className="bg-slate-300 h-screen flex justify-center">
         <div className="flex flex-col justify-center">

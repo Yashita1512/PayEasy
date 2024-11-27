@@ -3,14 +3,11 @@ import {AppBar} from "../components/AppBar"
 import { BalanceComponent } from "../components/BalanceComponent"
 import { Users } from "../components/Users"
 import axios from "axios"
-import { useNavigate } from "react-router-dom"
 
 export const Dashboard=()=>{
-    const BACKEND_URL = "https://pay-easy.vercel.app"
+    const BACKEND_URL = "http://localhost:3000"
     const [balance, setBalance] = useState(0)
     const [nameInitials, setNameInitials] = useState("");
-    
-    const navigate = useNavigate();
 
     useEffect(()=>{
         axios.get(BACKEND_URL + "/account/balance", {

@@ -3,7 +3,7 @@ import { OneUserBar } from "./OneUserBar";
 import axios from "axios"
 
 export const Users = ()=>{
-    const BACKEND_URL = "https://pay-easy.vercel.app";
+    const BACKEND_URL = "http://localhost:3000";
     const [users, setUsers] = useState([]);
     const [searchFilter, setsearchFilter] = useState([]);
 
