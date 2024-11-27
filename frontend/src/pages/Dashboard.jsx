@@ -5,7 +5,7 @@ import { Users } from "../components/Users"
 import axios from "axios"
 
 export const Dashboard=()=>{
-    const BACKEND_URL = "http://localhost:3000"
+    const BACKEND_URL = "https://pay-easy-backend.vercel.app"
     const [balance, setBalance] = useState(0)
     const [nameInitials, setNameInitials] = useState("");
 

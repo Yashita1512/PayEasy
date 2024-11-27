@@ -8,7 +8,7 @@ export const SendMoney=()=>{
     const [amount, setAmount]=useState(0);
     const [transferSuccess, setTransferSuccess] = useState(false)
     const navigate = useNavigate();
-    const BACKEND_URL = "http://localhost:3000";
+    const BACKEND_URL = "https://pay-easy-backend.vercel.app";
 
     return <div className="flex justify-center items-center bg-slate-100 h-screen">
         <div className="bg-white p-6">
