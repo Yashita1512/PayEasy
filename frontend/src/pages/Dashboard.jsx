@@ -22,7 +22,7 @@ export const Dashboard=()=>{
     
     return <div>
         <AppBar label={"PayEasy App"} greetMessage={"Hello"} nameInitials={nameInitials}/>
-        <div className="m-8">
+        <div className="m-8 md:mx-24 md:my-8">
             <BalanceComponent balance={balance}/>
             <Users/>
             <div className="flex justify-end pt-10">
